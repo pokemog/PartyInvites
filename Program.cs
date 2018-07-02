@@ -19,6 +19,10 @@ namespace PartyInvites
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+            .UseConfiguration(new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                    .Build())
+            .UseStartup<Startup>();
     }
 }
